@@ -1,0 +1,83 @@
+<odoo>
+
+    <!-- TREE -->
+    <record id="view_partner_tax_padron_santa_fe_tree" model="ir.ui.view">
+        <field name="name">partner.tax.padron.santa_fe.tree</field>
+        <field name="model">partner.tax.padron.santa_fe</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="vigencia_desde"/>
+                <field name="vigencia_hasta"/>
+                <field name="cuit"/>
+                <field name="tipo_contribuyente"/>
+                <field name="alic_percepcion"/>
+                <field name="alic_retencion"/>
+                <field name="razon_social"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- FORM -->
+    <record id="view_partner_tax_padron_santa_fe_form" model="ir.ui.view">
+        <field name="name">partner.tax.padron.santa_fe.form</field>
+        <field name="model">partner.tax.padron.santa_fe</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="cuit"/>
+                    </group>
+
+                    <group>
+                        <field name="fecha_publicacion"/>
+                        <field name="vigencia_desde"/>
+                        <field name="vigencia_hasta"/>
+                    </group>
+
+                    <group>
+                        <field name="tipo_contribuyente"/>
+                        <field name="marca_alta"/>
+                        <field name="marca_alicuota"/>
+                    </group>
+
+                    <group>
+                        <field name="alic_percepcion"/>
+                        <field name="alic_retencion"/>
+                        <field name="grupo_percepcion"/>
+                        <field name="grupo_retencion"/>
+                    </group>
+
+                    <group>
+                        <field name="razon_social"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="view_partner_form_inherit_padron_santa_fe" model="ir.ui.view">
+        <field name="name">res.partner.form.padron.santa_fe</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Padrón Santa Fe">
+                    <field name="tax_padron_ids" context="{'default_partner_id': active_id}">
+                        <tree editable="bottom">
+                            <field name="vigencia_desde"/>
+                            <field name="vigencia_hasta"/>
+                            <field name="alic_percepcion"/>
+                            <field name="alic_retencion"/>
+                            <field name="tipo_contribuyente"/>
+                            <field name="razon_social"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

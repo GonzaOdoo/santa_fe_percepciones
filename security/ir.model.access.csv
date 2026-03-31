@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_partner_tax_padron_santa_fe_user,partner.tax.padron.santa_fe,model_partner_tax_padron_santa_fe,base.group_user,1,1,1,1
+access_padron_santa_fe_import_wizard_user,padron.santa.fe.import.wizard,model_padron_santa_fe_import_wizard,base.group_user,1,1,1,1
+access_padron_santa_fe_import_result_user,padron.santa.fe.import.result,model_padron_santa_fe_import_result,base.group_user,1,1,1,1

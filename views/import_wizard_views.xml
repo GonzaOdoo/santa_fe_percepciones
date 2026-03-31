@@ -1,0 +1,48 @@
+<odoo>
+
+    <record id="view_padron_santa_fe_import_wizard" model="ir.ui.view">
+        <field name="name">padron.santa.fe.import.wizard.form</field>
+        <field name="model">padron.santa.fe.import.wizard</field>
+        <field name="arch" type="xml">
+            
+            <form string="Importar Padrón Santa Fe">
+                <header>
+                    <button name="action_import" type="object" string="Importar" class="btn-primary" context="{'skip_save': True}"/>
+                    <button string="Cancelar" special="cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                            <h1><field name="name" required="1"/></h1>
+                        </div>
+                    <group>
+                        <field name="file" filename="filename"/>
+                    </group>
+    
+                    <separator string="Resultados" invisible="not line_ids"/>
+    
+                    <field name="line_ids" nolabel="1" invisible="not line_ids">
+                        <tree>
+                            <field name="razon_social"/>
+                            <field name="cuit"/>
+                            <field name="alic_percepcion"/>
+                            <field name="alic_retencion"/>
+                            <field name="tipo_contribuyente"/>
+                            
+                        </tree>
+                    </field>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="action_padron_santa_fe_import" model="ir.actions.act_window">
+        <field name="name">Importar Padrón Santa Fe</field>
+        <field name="res_model">padron.santa.fe.import.wizard</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+
+      <menuitem id="padron_santafe_menu" parent="account.menu_finance_entries" action="action_padron_santa_fe_import" sequence="120"/>
+
+</odoo>
