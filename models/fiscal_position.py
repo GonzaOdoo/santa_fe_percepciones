@@ -27,8 +27,8 @@ class AccountFiscalPosition(models.Model):
     dynamic_padron = fields.Boolean("Usa padrón dinámico")
 
     def map_tax(self, taxes):
-        self.ensure_one()
-    
+        if not self:
+            return taxes
         if not self.dynamic_padron:
             return super().map_tax(taxes)
     
