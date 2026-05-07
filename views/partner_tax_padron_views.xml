@@ -5,7 +5,7 @@
         <field name="name">partner.tax.padron.santa_fe.tree</field>
         <field name="model">partner.tax.padron.santa_fe</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="vigencia_desde"/>
                 <field name="vigencia_hasta"/>
                 <field name="cuit"/>
@@ -13,7 +13,7 @@
                 <field name="alic_percepcion"/>
                 <field name="alic_retencion"/>
                 <field name="razon_social"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -65,14 +65,14 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Padrón Santa Fe">
                     <field name="tax_padron_ids" context="{'default_partner_id': active_id}">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="vigencia_desde"/>
                             <field name="vigencia_hasta"/>
                             <field name="alic_percepcion"/>
                             <field name="alic_retencion"/>
                             <field name="tipo_contribuyente"/>
                             <field name="razon_social"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

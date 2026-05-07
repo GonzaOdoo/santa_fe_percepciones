@@ -19,7 +19,7 @@
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale','base','account','l10n_ar_account_withholding'],
+    'depends': ['sale','base','account'],
 
     'data':[
         'security/ir.model.access.csv',
