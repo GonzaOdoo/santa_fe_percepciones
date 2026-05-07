@@ -21,14 +21,14 @@
                     <separator string="Resultados" invisible="not line_ids"/>
     
                     <field name="line_ids" nolabel="1" invisible="not line_ids">
-                        <tree>
+                        <list>
                             <field name="razon_social"/>
                             <field name="cuit"/>
                             <field name="alic_percepcion"/>
                             <field name="alic_retencion"/>
                             <field name="tipo_contribuyente"/>
                             
-                        </tree>
+                        </list>
                     </field>
                 </sheet>
 

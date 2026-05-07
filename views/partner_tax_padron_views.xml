@@ -64,7 +64,7 @@
 
             <xpath expr="//notebook" position="inside">
                 <page string="Padrón Santa Fe">
-                    <field name="tax_padron_ids" context="{'default_partner_id': active_id}">
+                    <field name="tax_padron_ids">
                         <list editable="bottom">
                             <field name="vigencia_desde"/>
                             <field name="vigencia_hasta"/>

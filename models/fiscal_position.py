@@ -9,7 +9,7 @@ from odoo.exceptions import UserError,ValidationError
 
 _logger = logging.getLogger(__name__)
 class AccountFiscalPositionTax(models.Model):
-    _inherit = 'account.fiscal.position.tax'
+    _inherit = 'account.fiscal.position.account'
 
     use_padron = fields.Boolean(
         string='Usar padrón dinámico'
