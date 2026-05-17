@@ -3,8 +3,7 @@ from odoo.upgrade import util
 _logger = logging.getLogger(__name__)
 
 def migrate(cr, version):
-    if not version:
-        return
+    _logger.info('Starting post-migration script for Padron de Impuestos Santa Fe')
     _logger.info('Checking if module santa_fe_percepciones is installed')
     _logger.info( util.module_installed(cr, 'santa_fe_percepciones'))
     _logger.info('Checking if module account-payment-group is installed')
