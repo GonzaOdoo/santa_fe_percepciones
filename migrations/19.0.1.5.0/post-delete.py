@@ -5,7 +5,9 @@ _logger = logging.getLogger(__name__)
 def migrate(cr, version):
     if not version:
         return
+    _logger.info('Checking if module santa_fe_percepciones is installed')
     _logger.info( util.module_installed(cr, 'santa_fe_percepciones'))
+    _logger.info('Checking if module account-payment-group is installed')
     _logger.info(util.module_installed(cr, 'account-payment-group'))
     
     _logger.info('Uninstalling module santa_fe_percepciones')
