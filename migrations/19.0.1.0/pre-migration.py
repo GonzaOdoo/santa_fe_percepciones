@@ -8,56 +8,28 @@ def migrate(cr, version):
         SELECT name, state
         FROM ir_module_module
         WHERE name IN (
-            'account-payment-group',
-            'account-payment-patch',
-            'l10n_ar_account_withholding',
-            'l10n_ar_withholding_ux',
-            'account_invoice_pricelist',
-            'Acccount_taxes',
-            'Res_partner'
+            'account_payment_group',
+            'l10n_ar_tax'
         )
-        ORDER BY name
     """)
-    _logger.warning(
-        "Module states before fix: %s",
-        cr.fetchall()
-    )
-
-    cr.execute("""
-        UPDATE ir_module_module
-           SET state = 'installed'
-         WHERE name IN (
-             'account-payment-group',
-             'account-payment-patch',
-             'l10n_ar_account_withholding',
-             'l10n_ar_withholding_ux',
-             'account_invoice_pricelist',
-             'Acccount_taxes',
-             'Res_partner'
-         )
-           AND state = 'to upgrade'
-    """)
-
-    _logger.warning(
-        "Modules changed from 'to upgrade' to 'installed': %s",
-        cr.rowcount
-    )
-
+    _logger.warning("Replacement modules: %s", cr.fetchall())
     cr.execute("""
         SELECT name, state
         FROM ir_module_module
+        WHERE state IN ('to install', 'to upgrade')
+        ORDER BY name
+    """)
+    _logger.warning("Pending modules: %s", cr.fetchall())
+    cr.execute("""
+        SELECT name, state, latest_version
+        FROM ir_module_module
         WHERE name IN (
             'account-payment-group',
-            'account-payment-patch',
+            'account_payment_group',
             'l10n_ar_account_withholding',
             'l10n_ar_withholding_ux',
-            'account_invoice_pricelist',
-            'Acccount_taxes',
-            'Res_partner'
+            'l10n_ar_tax'
         )
         ORDER BY name
     """)
-    _logger.warning(
-        "Module states after fix: %s",
-        cr.fetchall()
-    )
+    _logger.warning("Migration module status: %s", cr.fetchall())
