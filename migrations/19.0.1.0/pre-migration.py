@@ -69,6 +69,19 @@ def migrate(cr, version):
             'account_invoice_pricelist'
         )
     """)
+    cr.execute("""
+        UPDATE ir_module_module
+        SET state = 'uninstalled'
+        WHERE name IN (
+            'account-payment-group',
+            'l10n_ar_account_withholding',
+            'l10n_ar_withholding_ux'
+        )
+    """)
+
+    _logger.warning(
+        "Marked legacy modules as uninstalled"
+    )
     #if util.module_installed(cr, "account_payment_group"):
     #    util.remove_module(cr, "account-payment-group")
 
