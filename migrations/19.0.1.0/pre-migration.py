@@ -85,7 +85,7 @@ def migrate(cr, version):
     cr.execute("""
         DELETE FROM l10n_ar_payment_withholding
         WHERE payment_id IS NULL
-        AND id IN (1928, 2626, 2627, 2628)
+        AND id IN (1928,2687,2688)
     """)
 
     _logger.warning(
