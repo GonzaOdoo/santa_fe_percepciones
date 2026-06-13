@@ -92,6 +92,16 @@ def migrate(cr, version):
         "Deleted %s orphan withholding records",
         cr.rowcount
     )
+    cr.execute("""
+        UPDATE sale_order
+        SET x_studio_stockcliente = 'Cliente'
+        WHERE x_studio_stockcliente IS NULL
+    """)
+
+    _logger.warning(
+        "Fixed %s sale orders with NULL x_studio_stockcliente",
+        cr.rowcount
+    )
     #if util.module_installed(cr, "account_payment_group"):
     #    util.remove_module(cr, "account-payment-group")
 
