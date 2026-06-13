@@ -82,6 +82,16 @@ def migrate(cr, version):
     _logger.warning(
         "Marked legacy modules as uninstalled"
     )
+    cr.execute("""
+        DELETE FROM l10n_ar_payment_withholding
+        WHERE payment_id IS NULL
+        AND id IN (1928, 2626, 2627, 2628)
+    """)
+
+    _logger.warning(
+        "Deleted %s orphan withholding records",
+        cr.rowcount
+    )
     #if util.module_installed(cr, "account_payment_group"):
     #    util.remove_module(cr, "account-payment-group")
 
