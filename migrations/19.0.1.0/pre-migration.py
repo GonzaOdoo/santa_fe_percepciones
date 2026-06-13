@@ -59,9 +59,19 @@ def migrate(cr, version):
         "Replacement modules after force install: %s",
         cr.fetchall()
     )
-    if util.module_installed(cr, "account_payment_group"):
-        util.remove_module(cr, "account-payment-group")
+    cr.execute("""
+        UPDATE ir_module_module
+        SET state = 'uninstalled'
+        WHERE name IN (
+            'Acccount_taxes',
+            'Res_partner',
+            'account-payment-patch',
+            'account_invoice_pricelist'
+        )
+    """)
+    #if util.module_installed(cr, "account_payment_group"):
+    #    util.remove_module(cr, "account-payment-group")
 
-    if util.module_installed(cr, "l10n_ar_tax"):
-        util.remove_module(cr, "l10n_ar_account_withholding")
-        util.remove_module(cr, "l10n_ar_withholding_ux")
+    #if util.module_installed(cr, "l10n_ar_tax"):
+    #    util.remove_module(cr, "l10n_ar_account_withholding")
+    #    util.remove_module(cr, "l10n_ar_withholding_ux")
